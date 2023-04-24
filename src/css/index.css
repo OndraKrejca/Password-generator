@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root .container {
+  width: 50%;
+  border: solid red 1px;
+}
+#root .container .card__result {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=index.css.map */
