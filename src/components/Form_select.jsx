@@ -10,7 +10,7 @@ const FormSelect = ({
   textItem,
 }) => {
   return (
-    <div>
+    <div className='forms__uppercase'>
       <label htmlFor={name}>
         <input
           type={type}

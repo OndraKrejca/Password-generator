@@ -1,17 +1,237 @@
+@import 'variables';
+@import 'mixin';
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $font__family;
+}
+
+body {
+  background-color: black;
 }
 
 #root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
   .container {
-    width: 50%;
-    border: solid red 1px;
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     .card__result {
       display: flex;
       justify-content: space-between;
+      background-color: $color__bck--panel;
+      padding: $padding__box;
+
+      p {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        font-weight: 500;
+        color: $color__text;
+      }
+
+      .btn__result {
+        background-color: transparent;
+        border: none;
+        font-size: 2rem;
+        transform: translateY(0.4rem);
+        scale: 1.4;
+        cursor: pointer;
+        color: $color__text;
+        transition: color 0.3s ease-in-out;
+
+        &:hover {
+          color: $color__items;
+        }
+      }
+    }
+
+    .card_setup {
+      background-color: $color__bck--panel;
+      padding: $padding__box;
+
+      .c-setup__forms {
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.7rem;
+
+          .forms__rangeForm {
+            .f-rangeForm--box {
+              display: flex;
+              justify-content: space-between;
+
+              .f-rangeForm--title {
+                @include text__plain;
+              }
+
+              .f-rangeForm--number {
+                @include text__length;
+              }
+            }
+
+            .f-rangeForm--input {
+              width: 100%;
+              -webkit-appearance: none;
+              appearance: none;
+              margin-bottom: 1.8rem;
+              cursor: pointer;
+            }
+
+            .f-rangeForm--input::-webkit-slider-runnable-track {
+              background: $color__items;
+              height: 10px;
+            }
+
+            .f-rangeForm--input::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              background: $color__bck--panel;
+              border: solid 2px $color__items;
+              height: 40px;
+              width: 40px;
+              border-radius: 50%;
+              transform: translateY(-36%);
+            }
+          }
+
+          .forms__uppercase {
+            label {
+              display: flex;
+              gap: 1rem;
+              @include text__plain;
+
+              input[type='checkbox'] {
+                -webkit-appearance: none;
+                appearance: none;
+                color: $color__items;
+                width: 1.2rem;
+                height: 1.2rem;
+                border: 0.15em solid currentColor;
+                transform: translateY(0.35em);
+                display: grid;
+                place-content: center;
+                cursor: pointer;
+
+                &::before {
+                  content: '';
+                  width: 0.65em;
+                  height: 0.65em;
+                  transform: scale(0);
+                  transition: 120ms transform ease-in-out;
+                  box-shadow: inset 1em 1em var(--form-control-color);
+                  transform-origin: bottom center;
+                  clip-path: polygon(
+                    14% 44%,
+                    0 65%,
+                    50% 100%,
+                    100% 16%,
+                    80% 0%,
+                    43% 62%
+                  );
+                }
+
+                &:checked {
+                  background-color: $color__items;
+                }
+
+                &:checked::before {
+                  transform: scale(1.4);
+                  background-color: $color__bck--panel;
+                }
+              }
+            }
+          }
+          .c-setup__box--strenght {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: $color__bck;
+            padding: $padding__box-strength;
+            align-items: center;
+            justify-self: space-between;
+            margin: 1rem 0;
+
+            .c-setup__box--text {
+              p {
+                @include text__box-strenght;
+              }
+            }
+
+            .c-setup__box--diff {
+              display: flex;
+              flex-direction: row;
+              gap: 1rem;
+              justify-content: flex-end;
+              align-items: center;
+              p {
+                @include text__box-strenght;
+                color: $color__text;
+              }
+              .c-setup__box--graph {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+                height: 2.5rem;
+                position: relative;
+
+                span {
+                  display: block;
+                  width: 0.6rem;
+                  height: 100%;
+                  border: solid 1px $color__text--low;
+                }
+
+                .span__alert {
+                  background-color: $color__alert;
+                }
+
+                .item__alert {
+                  position: absolute;
+                  top: 0;
+                  left: 1.1rem;
+                  width: 0.6rem;
+                  height: 100%;
+                  background-color: $color__alert;
+
+                  &:nth-child(2) {
+                    left: 2.2rem;
+                  }
+
+                  &:nth-child(3) {
+                    left: 3.3rem;
+                  }
+                }
+              }
+            }
+          }
+
+          .btn {
+            border: solid 1px $color__items;
+            background-color: transparent;
+            cursor: pointer;
+            height: 3.5rem;
+            @include text__plain;
+            transition: all 0.5s ease-in-out;
+            margin-bottom: 1.5rem;
+
+            &:hover {
+              color: $color__items;
+              background-color: $color__bck--panel;
+              opacity: 0.8;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,16 +1,17 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from '../reducer/Reduce.jsx'
-import { HANDLECHANGE } from '../assets/Helpers.jsx'
+import { HANDLECHANGE, HANDLESUBMIT, INDICATION } from '../assets/Helpers.jsx'
 
 const AppContext = React.createContext()
 
 const initialState = {
-  passWord: '',
-  passLength: 0,
+  passWord: '...',
+  passLength: 10,
   passUpper: false,
   passLower: false,
   passNumbers: false,
   passSymbols: false,
+  sign: [],
 }
 
 const AppProvider = ({ children }) => {
@@ -27,13 +28,17 @@ const AppProvider = ({ children }) => {
     dispatch({ type: HANDLECHANGE, payload: { name, value } })
   }
 
-  const random = (min = 65, max = 90) => {
-    return Math.floor(Math.random() * (max + 1 - min) + min)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch({ type: HANDLESUBMIT })
   }
-  // let char = String.fromCharCode(65, 90)
+
+  useEffect(() => {
+    dispatch({ type: INDICATION })
+  }, [state.passUpper, state.passNumbers, state.passSymbols])
 
   return (
-    <AppContext.Provider value={{ ...state, handleChange }}>
+    <AppContext.Provider value={{ ...state, handleChange, handleSubmit }}>
       {children}
     </AppContext.Provider>
   )
