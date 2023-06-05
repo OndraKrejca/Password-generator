@@ -88,7 +88,18 @@ body {
               cursor: pointer;
             }
 
+            input[type='range'] {
+              border: none;
+              outline: none;
+              background-color: transparent;
+            }
+
             .f-rangeForm--input::-webkit-slider-runnable-track {
+              background: $color__items;
+              height: 10px;
+            }
+
+            input[type='range']::-moz-range-track {
               background: $color__items;
               height: 10px;
             }
@@ -102,6 +113,14 @@ body {
               width: 40px;
               border-radius: 50%;
               transform: translateY(-36%);
+            }
+
+            input[type='range']::-moz-range-thumb {
+              background: $color__bck--panel;
+              border: solid 2px $color__items;
+              height: 40px;
+              width: 40px;
+              border-radius: 50%;
             }
           }
 
